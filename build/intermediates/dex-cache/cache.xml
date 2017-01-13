@@ -3,12 +3,12 @@
 
     <item
         is-multidex="true"
-        jar="/home/zhizhong/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-iot/2.2.22/f0753db8c9be1b837d4922a342e506d51c6bf924/aws-android-sdk-iot-2.2.22.jar"
+        jar="/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.0/jars/libs/internal_impl-23.0.0.jar"
         jumboMode="true"
         optimize="true"
         revision="21.1.2"
-        sha1="f0753db8c9be1b837d4922a342e506d51c6bf924">
-        <dex dex="/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/transforms/dex/debug/folders/1000/10/aws-android-sdk-iot-2.2.22_c0bd324ebc7bd02f37b084600fe545dce3e58bfe/classes.dex" />
+        sha1="8bd336eeae661e8311330284897ee07f8ebaa297">
+        <dex dex="/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.0.0_d68b0a8b7330dd4edebce7975dfa46fc3df5f60f/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -16,7 +16,7 @@
         jumboMode="true"
         optimize="true"
         revision="21.1.2"
-        sha1="2761f2d4178d01e7876514fe838f66a3389acc78">
+        sha1="4ca30c5423136d9a4ae08c8b7d363a1d14c02caa">
         <dex dex="/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_eaf8233953891e99b7d35ce9c8fde6568654e954/classes.dex" />
     </item>
     <item
@@ -27,6 +27,15 @@
         revision="21.1.2"
         sha1="89d827ffa47c241f2627421ef1d6c7a8c207a341">
         <dex dex="/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/transforms/dex/debug/folders/1000/10/org.eclipse.paho.client.mqttv3-1.1.0_6f4eb9d2b0eee1f6c33f0af9c4787f3f0a44d392/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/8.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="21.1.2"
+        sha1="65d086ee9daaf87b5af62ad24471edafa433354c">
+        <dex dex="/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-appindexing-8.4.0_a1549d100f60bfceb0428f708736bd70f7b133bd/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -52,8 +61,53 @@
         jumboMode="true"
         optimize="true"
         revision="21.1.2"
-        sha1="b1ddfa75b0bcef7fd23bae49685a340cbc810dcb">
+        sha1="560c32fe42d39d4a8d78f5d3c03c362737619ced">
         <dex dex="/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_e8023cf45b72619a93903ef5d17e4be1228dfcdf/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="21.1.2"
+        sha1="8e673cdfadd8f2d98fdb2fda2285c30f6e449782">
+        <dex dex="/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-basement-8.4.0_1b9721aa0b927c040271d263bf01ed791a8cce50/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/zhizhong/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-iot/2.2.22/f0753db8c9be1b837d4922a342e506d51c6bf924/aws-android-sdk-iot-2.2.22.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="21.1.2"
+        sha1="f0753db8c9be1b837d4922a342e506d51c6bf924">
+        <dex dex="/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/transforms/dex/debug/folders/1000/10/aws-android-sdk-iot-2.2.22_c0bd324ebc7bd02f37b084600fe545dce3e58bfe/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/8.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="21.1.2"
+        sha1="fef2b3e4b6b1b0e5fe7b69fa137a5fa55a3182ab">
+        <dex dex="/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-base-8.4.0_e6d688d53017c441f349894c7b1140de0b36da04/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/zhizhong/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/23.0.0/support-annotations-23.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="21.1.2"
+        sha1="990e7f98a7bad86a40b1f0bcfeb039023afd0839">
+        <dex dex="/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.0.0_dcefe03ad803cd09076da467ab5e4d63270d959f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="21.1.2"
+        sha1="8413c27b45b7fe61dca4a98159f65e2cee215f5a">
+        <dex dex="/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.0.0_70c91bb0436cd8092e2bd9c7e224a86d675ca01b/classes.dex" />
     </item>
 
 </items>

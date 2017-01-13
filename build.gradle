@@ -8,7 +8,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.2'
+        classpath 'com.android.tools.build:gradle:2.2.3'
     }
 }
 
@@ -16,23 +16,21 @@ apply plugin: 'com.android.application'
 
 dependencies {
     compile 'com.amazonaws:aws-android-sdk-iot:2.2.+'
+    compile 'com.google.android.gms:play-services-appindexing:8.4.0'
 }
 
 android {
     buildToolsVersion "21.1.2"
-    compileSdkVersion 18
-
+    compileSdkVersion 19
     defaultConfig {
         versionCode 1
         versionName "1.0.0"
-        minSdkVersion 16
-        targetSdkVersion 16
+        minSdkVersion 19
+        targetSdkVersion 19
     }
-
     lintOptions {
         abortOnError false
     }
-
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
@@ -43,5 +41,7 @@ android {
             res.srcDirs = ['res']
             assets.srcDirs = ['assets']
         }
+    }
+    productFlavors {
     }
 }

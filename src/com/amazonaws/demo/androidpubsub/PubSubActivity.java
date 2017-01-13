@@ -20,6 +20,12 @@ import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
+import android.content.Context;
+import android.hardware.Sensor;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.media.MediaRecorder;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -40,6 +46,10 @@ import com.amazonaws.services.iot.AWSIotClient;
 import com.amazonaws.services.iot.model.AttachPrincipalPolicyRequest;
 import com.amazonaws.services.iot.model.CreateKeysAndCertificateRequest;
 import com.amazonaws.services.iot.model.CreateKeysAndCertificateResult;
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.appindexing.Thing;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.io.UnsupportedEncodingException;
 import java.security.KeyStore;
@@ -53,11 +63,34 @@ import java.util.UUID;
 @TargetApi(18)
 
 
-public class PubSubActivity extends Activity {
+public class PubSubActivity extends Activity{
 
     static final String LOG_TAG = PubSubActivity.class.getCanonicalName();
+    private final String TAG = PubSubActivity.class.getName();
+
     DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
 
+    private SensorManager sensorManager = null;
+    private SensorEventListener sensorListener = null;
+    private Sensor accelerometer;
+    private Sensor linearAccelerometer;
+    private Sensor magnetometer;
+    private Timer timer;
+    public  double amplitudeDb;
+    private Button uploadButton;
+
+    public double getNoiseDate() {
+        return noiseDate;
+    }
+
+    public void setNoiseDate(double noiseDate) {
+        this.noiseDate = noiseDate;
+    }
+
+    private double noiseDate=0.0;
+
+    private DeviceSensor deviceSensor;
+ private Context context;
 
     // --- Constants to modify per your configuration ---
 
@@ -78,6 +111,7 @@ public class PubSubActivity extends Activity {
     private static final String KEYSTORE_PASSWORD = "password";
     // Certificate and key aliases in the KeyStore
     private static final String CERTIFICATE_ID = "default";
+
 
     EditText txtSubcribe;
     EditText txtTopic;
@@ -106,6 +140,11 @@ public class PubSubActivity extends Activity {
 
     private BluetoothAdapter mBluetoothAdapter;
     private long mAdvertisementCount = 0;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
 
     public byte[] getSensmitterData() {
@@ -140,9 +179,9 @@ public class PubSubActivity extends Activity {
         SensmitterDataF3 = sensmitterDataF3;
     }
 
-    static  private byte[] SensmitterData;
+    static private byte[] SensmitterData;
 
-    static  public byte[] SensmitterDataD9;
+    static public byte[] SensmitterDataD9;
     static private byte[] SensmitterDataF3;
     static private byte[] SensmitterDataE9;
 
@@ -151,13 +190,12 @@ public class PubSubActivity extends Activity {
             new BluetoothAdapter.LeScanCallback() {
 
 
-
                 @Override
                 public void onLeScan(final BluetoothDevice device, int rssi,
                                      byte[] scanRecord) {
 
                     StringBuilder sb = new StringBuilder();
-                    for(byte b : scanRecord) {
+                    for (byte b : scanRecord) {
                         sb.append(IntToHex2(b & 0xff));
 
                     }
@@ -173,20 +211,14 @@ public class PubSubActivity extends Activity {
                     }
 
 
-
-
-
-                    Log.d("asdasd",getSensmitterDataD9()+" "+getSensmitterDataE9()+" "+getSensmitterDataF3());
-
-
-
+                    Log.d("asdasd", getSensmitterDataD9() + " " + getSensmitterDataE9() + " " + getSensmitterDataF3());
 
 
                 }
             };
 
     public static String IntToHex2(int i) {
-        char hex_2[] = {Character.forDigit((i>>4) & 0x0f,16),Character.forDigit(i&0x0f, 16)};
+        char hex_2[] = {Character.forDigit((i >> 4) & 0x0f, 16), Character.forDigit(i & 0x0f, 16)};
         String hex_2_str = new String(hex_2);
         return hex_2_str.toUpperCase();
     }
@@ -195,6 +227,12 @@ public class PubSubActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        context=this;
+        deviceSensor=new DeviceSensor(context);
+
+
+
+
 
         // BLE
         final BluetoothManager bluetoothManager =
@@ -223,6 +261,14 @@ public class PubSubActivity extends Activity {
         btnDisconnect = (Button) findViewById(R.id.btnDisconnect);
         btnDisconnect.setOnClickListener(disconnectClick);
 
+        uploadButton=(Button)findViewById(R.id.uploadButton);
+        uploadButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mqttManager.publishString(getSensmitterDataJSON(getSensmitterDataF3()), "F3", AWSIotMqttQos.QOS0);
+
+            }
+        });
         // MQTT client IDs are required to be unique per AWS IoT account.
         // This UUID is "practically unique" but does not _guarantee_
         // uniqueness.
@@ -341,7 +387,11 @@ public class PubSubActivity extends Activity {
             }).start();
         }
         //publishBLE();
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
+
 
 
     View.OnClickListener connectClick = new View.OnClickListener() {
@@ -354,7 +404,7 @@ public class PubSubActivity extends Activity {
                 mqttManager.connect(clientKeyStore, new AWSIotMqttClientStatusCallback() {
                     @Override
                     public void onStatusChanged(final AWSIotMqttClientStatus status,
-                            final Throwable throwable) {
+                                                final Throwable throwable) {
                         Log.d(LOG_TAG, "Status = " + String.valueOf(status));
 
                         runOnUiThread(new Runnable() {
@@ -365,9 +415,8 @@ public class PubSubActivity extends Activity {
 
                                 } else if (status == AWSIotMqttClientStatus.Connected) {
                                     tvStatus.setText("Connected");
-                                        Timer timer = new Timer();
-                                        timer.scheduleAtFixedRate(new SendTimerTask(), 1000, 1000);
-
+                                    Timer timer = new Timer();
+                                    timer.scheduleAtFixedRate(new SendTimerTask(), 1000, 1000);
 
 
                                 } else if (status == AWSIotMqttClientStatus.Reconnecting) {
@@ -461,7 +510,58 @@ public class PubSubActivity extends Activity {
         }
     };
 
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    public Action getIndexApiAction() {
+        Thing object = new Thing.Builder()
+                .setName("PubSub Page") // TODO: Define a title for the content shown.
+                // TODO: Make sure this auto-generated URL is correct.
+                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
+                .build();
+        return new Action.Builder(Action.TYPE_VIEW)
+                .setObject(object)
+                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
+                .build();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        AppIndex.AppIndexApi.start(client, getIndexApiAction());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        AppIndex.AppIndexApi.end(client, getIndexApiAction());
+        client.disconnect();
+    }
+
+
+
+
     private class SendTimerTask extends TimerTask {
+        private MediaRecorder recorder;
+
+        public SendTimerTask(){
+
+        }
+
+        public SendTimerTask(MediaRecorder recorder) {
+            this.recorder=recorder;
+
+        }
+
+
         @Override
         public void run() {
             try {
@@ -470,7 +570,6 @@ public class PubSubActivity extends Activity {
 
                 mqttManager.publishString(getSensmitterDataJSON(getSensmitterDataD9()), "D9", AWSIotMqttQos.QOS0);
 
-                //Log.d("aassdd",tvStatus.getText()+"");
             } catch (Exception e) {
                 Log.e(LOG_TAG, "Publish error.", e);
             }
@@ -478,12 +577,19 @@ public class PubSubActivity extends Activity {
     }
 
 
-    public  String getSensmitterDataJSON( byte[] state) {
+    @Override
+    protected void onResume() {
+        super.onResume();
+        deviceSensor.startDeviceSensor();
+
+    }
+
+    public String getSensmitterDataJSON(byte[] state) {
 
         String modelName;
-        String jsonMessage ="";
+        String jsonMessage = "";
         Date dateobj = new Date();
-        String datetime=df.format(dateobj);
+        String datetime = df.format(dateobj);
 
 
         StringBuilder name1 = new StringBuilder();
@@ -495,7 +601,7 @@ public class PubSubActivity extends Activity {
         value1.append(IntToHex2(state[36] & 0xff));
 
         Integer temp = Integer.parseInt(value1.toString(), 16);
-        float tempV=temp/10.00f;
+        float tempV = temp / 10.00f;
 
 
         StringBuilder name2 = new StringBuilder();
@@ -507,7 +613,7 @@ public class PubSubActivity extends Activity {
         value2.append(IntToHex2(state[40] & 0xff));
 
         Integer humidity = Integer.parseInt(value2.toString(), 16);
-        float humidityV=humidity/10.00f;
+        float humidityV = humidity / 10.00f;
 
         StringBuilder name3 = new StringBuilder();
         name3.append(IntToHex2(state[41] & 0xff));
@@ -523,54 +629,53 @@ public class PubSubActivity extends Activity {
         StringBuilder name4 = new StringBuilder();
         name4.append(IntToHex2(state[45] & 0xff));
         name4.append(IntToHex2(state[46] & 0xff));
-        float valueD=0.00f;
-        if(name4.toString().equals("0008")){
+        float valueD = 0.00f;
+        if (name4.toString().equals("0008")) {
             StringBuilder value4 = new StringBuilder();
 
             value4.append(IntToHex2(state[47] & 0xff));
 
             valueD = Integer.parseInt(value4.toString(), 16);
 
-        }
-        else if(name4.toString().equals("0009")){
+        } else if (name4.toString().equals("0009")) {
             StringBuilder value4 = new StringBuilder();
             value4.append(IntToHex2(state[47] & 0xff));
             value4.append(IntToHex2(state[48] & 0xff));
 
-            valueD = Integer.parseInt(value4.toString(), 16)/10.00f;
+            valueD = Integer.parseInt(value4.toString(), 16) / 10.00f;
         }
 
 
-        if(state==getSensmitterDataD9()){
-            modelName="D9";
-            jsonMessage="{\"d\":{" +
-                    "\""+modelName+"Temp\":\"" + tempV + "\"," +
-                    "\""+modelName+"Humidity\":\"" + humidityV + "\"," +
-                    "\""+modelName+"LightLvl\":\"" + light + "\"," +
-                    "\""+modelName+"PIR\":\"" + valueD + "\"," +
+        if (state == getSensmitterDataD9()) {
+            modelName = "D9";
+            jsonMessage = "{\"d\":{" +
+                    "\"" + modelName + "Temp\":\"" + tempV + "\"," +
+                    "\"" + modelName + "Humidity\":\"" + humidityV + "\"," +
+                    "\"" + modelName + "LightLvl\":\"" + light + "\"," +
+                    "\"" + modelName + "PIR\":\"" + valueD + "\"," +
                     "\"D9Time\":\"" + datetime + "\"" +
                     " } }";
-        }
-        else if(state==getSensmitterDataE9()){
-            modelName="E9";
-            jsonMessage="{\"d\":{" +
-                    "\""+modelName+"Temp\":\"" + tempV + "\"," +
-                    "\""+modelName+"Humidity\":\"" + humidityV + "\"," +
-                    "\""+modelName+"LightLvl\":\"" + light + "\"," +
-                    "\""+modelName+"PIR\":\"" + valueD + "\"," +
+        } else if (state == getSensmitterDataE9()) {
+            modelName = "E9";
+            jsonMessage = "{\"d\":{" +
+                    "\"" + modelName + "Temp\":\"" + tempV + "\"," +
+                    "\"" + modelName + "Humidity\":\"" + humidityV + "\"," +
+                    "\"" + modelName + "LightLvl\":\"" + light + "\"," +
+                    "\"" + modelName + "PIR\":\"" + valueD + "\"," +
                     "\"E9Time\":\"" + datetime + "\"" +
                     " } }";
-        }
-        else if(state==getSensmitterDataF3()){
-            modelName="F3";
-            jsonMessage="{\"d\":{" +
-                    "\""+modelName+"Temp\":\"" + tempV + "\"," +
-                    "\""+modelName+"Humidity\":\"" + humidityV + "\"," +
-                    "\""+modelName+"LightLvl\":\"" + light + "\"," +
-                    "\""+modelName+"Pressure\":\"" + valueD + "\"," +
+        } else if (state == getSensmitterDataF3()) {
+            modelName = "F3";
+            jsonMessage = "{\"d\":{" +
+                    "\"" + modelName + "Temp\":\"" + tempV + "\"," +
+                    "\"" + modelName + "Humidity\":\"" + humidityV + "\"," +
+                    "\"" + modelName + "LightLvl\":\"" + light + "\"," +
+                    "\"" + modelName + "Pressure\":\"" + valueD + "\"," +
                     "\"F3Time\":\"" + datetime + "\"" +
                     " } }";
         }
         return jsonMessage;
     }
+
+
 }

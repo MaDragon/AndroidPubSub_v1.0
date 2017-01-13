@@ -139,17 +139,32 @@
 
         <TextView
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="115dp"
             android:layout_weight="2"
             android:gravity="center_vertical"
             android:text="Message:" />
 
+        <Button
+            android:text="Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/uploadButton"
+            android:layout_weight="1" />
+
         <EditText
             android:id="@+id/txtMessage"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="144dp"
             android:layout_weight="5"
             android:gravity="center_vertical" />
+
+        <Button
+            android:text="Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/disconButton"
+            android:layout_weight="1" />
+
     </LinearLayout>
 
     <Button

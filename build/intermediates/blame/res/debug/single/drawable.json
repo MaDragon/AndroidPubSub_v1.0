@@ -1,6 +1,38 @@
 [
     {
+        "merged": "/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/res/merged/debug/drawable/common_google_signin_btn_icon_light.xml",
+        "source": "/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/8.4.0/res/drawable/common_google_signin_btn_icon_light.xml"
+    },
+    {
+        "merged": "/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/res/merged/debug/drawable/common_plus_signin_btn_icon_dark.xml",
+        "source": "/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/8.4.0/res/drawable/common_plus_signin_btn_icon_dark.xml"
+    },
+    {
+        "merged": "/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/res/merged/debug/drawable/common_plus_signin_btn_icon_light.xml",
+        "source": "/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/8.4.0/res/drawable/common_plus_signin_btn_icon_light.xml"
+    },
+    {
+        "merged": "/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/res/merged/debug/drawable/common_plus_signin_btn_text_dark.xml",
+        "source": "/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/8.4.0/res/drawable/common_plus_signin_btn_text_dark.xml"
+    },
+    {
+        "merged": "/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/res/merged/debug/drawable/common_plus_signin_btn_text_light.xml",
+        "source": "/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/8.4.0/res/drawable/common_plus_signin_btn_text_light.xml"
+    },
+    {
+        "merged": "/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/res/merged/debug/drawable/common_google_signin_btn_icon_dark.xml",
+        "source": "/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/8.4.0/res/drawable/common_google_signin_btn_icon_dark.xml"
+    },
+    {
         "merged": "/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/res/merged/debug/drawable/ic_launcher.png",
         "source": "/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/res/drawable/ic_launcher.png"
+    },
+    {
+        "merged": "/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/res/merged/debug/drawable/common_google_signin_btn_text_light.xml",
+        "source": "/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/8.4.0/res/drawable/common_google_signin_btn_text_light.xml"
+    },
+    {
+        "merged": "/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/res/merged/debug/drawable/common_google_signin_btn_text_dark.xml",
+        "source": "/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/8.4.0/res/drawable/common_google_signin_btn_text_dark.xml"
     }
 ]
