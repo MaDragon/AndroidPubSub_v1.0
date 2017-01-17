@@ -16,7 +16,7 @@
         jumboMode="true"
         optimize="true"
         revision="21.1.2"
-        sha1="4ca30c5423136d9a4ae08c8b7d363a1d14c02caa">
+        sha1="454e4edf3ff2a302a92eaca9b6b989d748b96403">
         <dex dex="/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_eaf8233953891e99b7d35ce9c8fde6568654e954/classes.dex" />
     </item>
     <item
@@ -61,7 +61,7 @@
         jumboMode="true"
         optimize="true"
         revision="21.1.2"
-        sha1="560c32fe42d39d4a8d78f5d3c03c362737619ced">
+        sha1="7b96e4692e72aebb211371ed44ae5b1d2fc3d5f0">
         <dex dex="/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_e8023cf45b72619a93903ef5d17e4be1228dfcdf/classes.dex" />
     </item>
     <item

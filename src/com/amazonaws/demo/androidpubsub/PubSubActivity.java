@@ -51,6 +51,7 @@ import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.KeyStore;
 import java.text.DateFormat;
@@ -76,8 +77,12 @@ public class PubSubActivity extends Activity{
     private Sensor linearAccelerometer;
     private Sensor magnetometer;
     private Timer timer;
+    private Timer timerButton;
+    private TimerTask taskButton;
     public  double amplitudeDb;
     private Button uploadButton;
+    private Button disconButton;
+    private boolean isUpload=true;
 
     public double getNoiseDate() {
         return noiseDate;
@@ -229,10 +234,22 @@ public class PubSubActivity extends Activity{
         setContentView(R.layout.activity_main);
         context=this;
         deviceSensor=new DeviceSensor(context);
+        MediaRecorder mRecorder  = new MediaRecorder();
+        mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+        mRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+        mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+        mRecorder.setOutputFile("/dev/null");
+        try {
+            mRecorder.prepare();
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        mRecorder.start();
+        timer=new Timer();
 
-
-
-
+        timer.scheduleAtFixedRate(new SendTimerTask(mRecorder), 1000, 1000);
 
         // BLE
         final BluetoothManager bluetoothManager =
@@ -265,10 +282,37 @@ public class PubSubActivity extends Activity{
         uploadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mqttManager.publishString(getSensmitterDataJSON(getSensmitterDataF3()), "F3", AWSIotMqttQos.QOS0);
+                isUpload=true;
+                if(isUpload) {
+                     timerButton=new Timer();
+                     taskButton =new TimerTask() {
+                        @Override
+                        public void run() {
+                            mqttManager.publishString(jsonPhone(), "Phone", AWSIotMqttQos.QOS0);
+                            Log.d("SSSXS","uping");
+                        }
+                    };
+                    timerButton.scheduleAtFixedRate(taskButton,1000,1000);
+
+                }
 
             }
         });
+
+        disconButton=(Button)findViewById(R.id.disconButton);
+        disconButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                timerButton.cancel();
+                isUpload=false;
+                if(isUpload) {
+                    mqttManager.publishString(jsonPhone(), "Phone", AWSIotMqttQos.QOS0);
+                    Log.d("SSSXS","upi1111ng");
+                }
+                Log.d("SSSXS","dddd");
+            }
+        });
+
         // MQTT client IDs are required to be unique per AWS IoT account.
         // This UUID is "practically unique" but does not _guarantee_
         // uniqueness.
@@ -564,7 +608,13 @@ public class PubSubActivity extends Activity{
 
         @Override
         public void run() {
+
             try {
+                float audiometers = recorder.getMaxAmplitude();
+                amplitudeDb = 20 * Math.log10((double)Math.abs(audiometers));
+                setNoiseDate(amplitudeDb);
+
+                Log.d("223SSS", String.valueOf(amplitudeDb));
                 mqttManager.publishString(getSensmitterDataJSON(getSensmitterDataF3()), "F3", AWSIotMqttQos.QOS0);
                 mqttManager.publishString(getSensmitterDataJSON(getSensmitterDataE9()), "E9", AWSIotMqttQos.QOS0);
 
@@ -582,6 +632,15 @@ public class PubSubActivity extends Activity{
         super.onResume();
         deviceSensor.startDeviceSensor();
 
+    }
+    public String jsonPhone(){
+        String jsonMessage = "";
+        jsonMessage = "{\"d\":{" +
+                "\"" + "NoiseLevel\":\"" + getNoiseDate() + "\"," +
+                "\"" + "UserMovement\":\"" + deviceSensor.getStateUserMovement() + "\"," +
+                "\"" + "DeviceMoviment\":\"" + deviceSensor.getStateDeviceMovement() + "\"" +
+                                " } }";
+        return jsonMessage;
     }
 
     public String getSensmitterDataJSON(byte[] state) {
