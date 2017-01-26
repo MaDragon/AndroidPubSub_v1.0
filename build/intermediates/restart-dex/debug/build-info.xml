@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <instant-run
-    abi="armeabi-v7a,armeabi"
-    api-level="21"
+    abi="x86"
+    api-level="22"
     density="xxhdpi"
     format="8"
     plugin-version="2.2.3"
-    timestamp="4848721454956"
+    timestamp="10666688301645"
     token="-7636609425704576690"
     verifier="FULL_BUILD_REQUESTED" >
 
     <task
         name="javac"
-        duration="616" />
+        duration="3127" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="66" />
+        duration="504" />
     <task
         name="verifier"
-        duration="2" />
+        duration="37" />
 
     <artifact
         location="/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/outputs/apk/AndroidPubSub-debug.apk"
         type="MAIN" />
 
     <build
-        timestamp="56002361380012"
+        timestamp="10666688301645"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/outputs/apk/AndroidPubSub-debug.apk"

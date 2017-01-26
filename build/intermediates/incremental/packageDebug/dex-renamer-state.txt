@@ -1,4 +1,4 @@
-#Tue Jan 17 16:06:10 CET 2017
+#Thu Jan 26 13:55:30 CET 2017
 base.0=/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_e8023cf45b72619a93903ef5d17e4be1228dfcdf
 renamed.1=classes2.dex
 renamed.0=classes.dex

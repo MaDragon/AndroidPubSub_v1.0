@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Tue Jan 17 14:33:04 CET 2017
+#Thu Jan 26 13:55:31 CET 2017
 76.base=/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/res/resources-debug.ap_
 5.base=/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/res/resources-debug.ap_
 86.base=/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/res/resources-debug.ap_
@@ -14,7 +14,7 @@
 46.base=/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/transforms/mergeJavaRes/debug/jars/2/1f/main.jar
 72.set=ANDROID_RESOURCE
 56.base=/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-appindexing-8.4.0_a1549d100f60bfceb0428f708736bd70f7b133bd
-71.file=/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/res/resources-debug.ap_/res/drawable-xxhdpi-v4/common_plus_signin_btn_text_dark_normal.9.png
+71.file=/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/res/resources-debug.ap_/res/drawable-hdpi-v4/common_ic_googleplayservices.png
 10.set=ANDROID_RESOURCE
 28.set=DEX
 22.base=/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/res/resources-debug.ap_
@@ -25,7 +25,7 @@
 32.base=/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/res/resources-debug.ap_
 65.file=/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/res/resources-debug.ap_/res/drawable/common_plus_signin_btn_text_dark.xml
 17.set=ANDROID_RESOURCE
-75.file=/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/res/resources-debug.ap_/res/color/common_google_signin_btn_text_dark.xml
+75.file=/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/res/resources-debug.ap_/res/drawable-xxhdpi-v4/common_google_signin_btn_text_light_disabled.9.png
 50.set=DEX
 68.set=JAVA_RESOURCE
 4.file=/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/transforms/mergeJavaRes/debug/jars/2/1f/main.jar/bundle.properties
@@ -75,7 +75,7 @@
 43.base=/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/res/resources-debug.ap_
 4.set=JAVA_RESOURCE
 42.set=DEX
-15.file=/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/res/resources-debug.ap_/res/drawable-xxhdpi-v4/common_google_signin_btn_text_dark_normal.9.png
+15.file=/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/res/resources-debug.ap_/res/drawable/common_google_signin_btn_text_light.xml
 53.base=/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/res/resources-debug.ap_
 31.set=ANDROID_RESOURCE
 49.set=ANDROID_RESOURCE
@@ -83,7 +83,7 @@
 82.set=JAVA_RESOURCE
 62.file=/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/transforms/mergeJavaRes/debug/jars/2/1f/main.jar/org/eclipse/paho/client/mqttv3/internal/nls/messages.properties
 57.base=/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/res/resources-debug.ap_
-72.file=/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/res/resources-debug.ap_/res/drawable-hdpi-v4/common_ic_googleplayservices.png
+72.file=/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/res/resources-debug.ap_/res/drawable-xxhdpi-v4/common_plus_signin_btn_text_dark_normal.9.png
 20.set=DEX
 38.set=ANDROID_RESOURCE
 23.base=/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/res/resources-debug.ap_
@@ -142,7 +142,7 @@ count=90
 19.set=JAVA_RESOURCE
 44.base=/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/res/resources-debug.ap_
 52.set=JAVA_RESOURCE
-16.file=/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/res/resources-debug.ap_/res/drawable/common_google_signin_btn_text_light.xml
+16.file=/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/res/resources-debug.ap_/res/drawable-xxhdpi-v4/common_google_signin_btn_text_dark_normal.9.png
 54.base=/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/res/resources-debug.ap_
 3.set=ANDROID_RESOURCE
 20.base=/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.0.0_dcefe03ad803cd09076da467ab5e4d63270d959f
@@ -163,7 +163,7 @@ count=90
 67.file=/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/transforms/mergeJavaRes/debug/jars/2/1f/main.jar/org/eclipse/paho/client/mqttv3/internal/nls/messages_cs.properties
 18.base=/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/transforms/dex/debug/folders/1000/5/slice_7
 37.set=JAVA_RESOURCE
-77.file=/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/res/resources-debug.ap_/res/drawable-xxhdpi-v4/common_google_signin_btn_text_light_disabled.9.png
+77.file=/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/res/resources-debug.ap_/res/color/common_google_signin_btn_text_dark.xml
 70.set=JAVA_RESOURCE
 88.set=DEX
 28.base=/home/zhizhong/Downloads/develop/aws-sdk-android-samples-master/AndroidPubSub/build/intermediates/transforms/dex/debug/folders/1000/10/gson-2.2.4_0f71655bc270a14492f1c963e9e40c06c4862d0a

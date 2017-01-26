@@ -292,7 +292,7 @@ public class PubSubActivity extends Activity{
                             Log.d("SSSXS","uping");
                         }
                     };
-                    timerButton.scheduleAtFixedRate(taskButton,1000,1000);
+                    timerButton.scheduleAtFixedRate(taskButton,1000,10000);
 
                 }
 
@@ -459,8 +459,7 @@ public class PubSubActivity extends Activity{
 
                                 } else if (status == AWSIotMqttClientStatus.Connected) {
                                     tvStatus.setText("Connected");
-                                    Timer timer = new Timer();
-                                    timer.scheduleAtFixedRate(new SendTimerTask(), 1000, 1000);
+
 
 
                                 } else if (status == AWSIotMqttClientStatus.Reconnecting) {
@@ -631,6 +630,12 @@ public class PubSubActivity extends Activity{
     protected void onResume() {
         super.onResume();
         deviceSensor.startDeviceSensor();
+   /*     if(tvStatus.getText()=="Connected") {
+            Log.d("22323","in");
+            Timer timer = new Timer();
+            timer.scheduleAtFixedRate(new SendTimerTask(), 90000, 20000);
+            Log.d("22323","out");
+        }*/
 
     }
     public String jsonPhone(){
