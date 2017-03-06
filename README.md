@@ -111,38 +111,33 @@ This sample demonstrates use of the AWS IoT APIs to securely publish to and subs
 Note: This application also contains commented-out code for acccessing a KeyStore that was deployed as a resource file as part of an APK.
 
 
-### Creating a Keystore for Use with AWS IoT
+## if Change the code
+### To receive BLE signal from Sensmitters.
+-PubSubActivity.java
+-line 194.
+```
+ private BluetoothAdapter.LeScanCallback mLeScanCallback =
+            new BluetoothAdapter.LeScanCallback()
+```
 
-It may be beneficial for your application to use an AWS IoT certificate and private key which were created off of the device.  The following instructions walk through the process of creating a keystore which can be placed on the filesystem of the device and accessed by the Android SDK.
-
-The keytool command does not allow importing an existing private key into a keystore.  To work around this we first create a PKCS12 formatted keystore with the certficate and private key and then we convert it to a Java keystore using keytool.
-
-#### Prerequsites
-
-* OpenSSL
-* Java Keytool Utility (available in the JDK, see [Keytool](https://docs.oracle.com/javase/8/docs/technotes/tools/unix/keytool.html))
-* BouncyCastle Provider Library (see [BouncyCastle Releases](http://www.bouncycastle.org/latest_releases.html))
-
-#### Steps
-
-1. Import certificate and private key into PKCS12 keystore.
-
-        openssl pkcs12 -export -out <keystore name>.p12 -inkey <private key file>.pem -in <certificate file>.pem -name <alias name>
-    
-    The alias parameter defines the alias of the cert/key in the keystore.  This is used in the SDK to access the correct certificate and private key entry if the keystore contains more than one.  This command will prompt for a password.  This password will be the source password when converting to BKS in the following step.
-
-1. Convert PKCS12 keystore to a BKS (BouncyCastle) keystore.
-
-        keytool -importkeystore -srckeystore <keystore name>.p12 -srcstoretype pkcs12 -destkeystore <keystore name>.bks -deststoretype bks --provider org.bouncycastle.jce.provider.BouncyCastleProvider -–providerpath path/to/provider/jar/bcprov-jdk15on-146.jar
-
-    This command will prompt for both a destination password and a source password.  The source password is the export password given in the previous step.  The destination password will be the password required to access the private key in the keystore going forward.  This password will be required inside your application when acccessing the keystore.  You can test the password in the next step.
-
-1. List aliases in keystore to verify (optional).
-
-        keytool -list -v -keystore <keystore name>.bks -storetype bks -storepass <keystore password> -provider org.bouncycastle.jce.provider.BouncyCastleProvider -providerpath path/to/provider/jar/bcprov-jdk15on-146.jar
-
-1. Push to Android Emulator (optional).
-
-        adb push <keystore name>.bks /data/user/0/your_app_dir_goes_here/files/<keystore name>
-
-    The directory and filename used will depend on your use case.  Typically the application's files directory is in /data/user/0/<app namespace>/files/.  You may however choose to locate your keystore on removable media or another space on the filesystem.  The SDK allows for specifying the file path and name of the keystore so the choice is up to you.
+### Detect Noise level in surrounding environment,
+-PubSubActivity.java
+-line 237  
+```
+   MediaRecorder mRecorder  = new MediaRecorder();
+```
+```  
+mRecorder.setOutputFile("/dev/null");
+```
+### Add more sensor in Phone
+-DeviceSensor.java
+-line 57.
+```
+public DeviceSensor(Context context) {}
+``` 
+### change sensor sampling rate, 
+-DeviceSensor.java
+-line 68
+``` 
+public void startDeviceSensor() {} 
+```
